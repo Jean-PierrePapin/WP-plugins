@@ -6,6 +6,8 @@
   Version: 1.0
   Author: Brad
   Author URI: https://wwww.udemy.com/user/bradschiff/
+  Text Domain: wcpdomain
+  Domain Path: /languages
 */
 
 class WordCountAndTimePlugin {
@@ -16,6 +18,14 @@ class WordCountAndTimePlugin {
 		add_action('admin_menu', [$this, 'adminPage']);
 		add_action('admin_init', [$this, 'settings']);
 		add_filter('the_content', [$this, 'ifWrap']);
+		add_action('init', [$this, 'languages']);
+	}
+
+	/**
+	 * Function to load the file with the text strings to translate
+	 */
+	function languages() {
+		load_plugin_textdomain('wcpdomain', false, dirname(plugin_basename(__FILE__)) . '/languages');
 	}
 
 	/**
@@ -46,11 +56,11 @@ class WordCountAndTimePlugin {
 		}
 
 		if (get_option('wcp_wordcount', '1')) {
-			$html .= 'This post has ' . $wordCount . ' words.<br>';
+			$html .= esc_html__('This post has', 'wcpdomain') . ' ' . $wordCount . ' ' . esc_html__('words', 'wcpdomain') .'.<br>';
 		}
 
 		if (get_option('wcp_charactercount', '1')) {
-			$html .= 'This post has ' . strlen(strip_tags($content)) . ' characters.<br>';
+			$html .= esc_html__('This post has', 'wcpdomain') . ' ' . strlen(strip_tags($content)) . ' ' . esc_html__('characters', 'wcpdomain') . '.<br>';
 		}
 
 		if (get_option('wcp_readtime', '1')) {
@@ -130,7 +140,7 @@ class WordCountAndTimePlugin {
 	<?php }
 
 	function adminPage() {
-		add_options_page('Word Count Setting', 'Word Count', 'manage_options', 'word-count-settings-page', [$this, 'ourHTML']);
+		add_options_page('Word Count Setting', __('Word Count', 'wcpdomain'), 'manage_options', 'word-count-settings-page', [$this, 'ourHTML']);
 	}
 	
 	/**
