@@ -7,6 +7,7 @@ manual-image-crop/
 members/
 regenerate-thumbnails/
 wp-migrate-db/
+loco-translate/
 
 # Files not to dowload
 hello.php
