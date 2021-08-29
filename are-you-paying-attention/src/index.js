@@ -24,7 +24,7 @@ wp.blocks.registerBlockType("ourplugin/are-you-paying-attention", {
         )
     },
     save: function (props) {
-        const { attributes: { skyColor, grassColor } } = props;
+        //const { attributes: { skyColor, grassColor } } = props;
         return null
     }
     
