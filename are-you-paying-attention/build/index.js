@@ -118,10 +118,12 @@ wp.blocks.registerBlockType("ourplugin/are-you-paying-attention", {
     return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       type: "text",
       placeholder: "sky color",
+      value: props.attributes.skyColor,
       onChange: updateSkyColor
     }), (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", {
       type: "text",
       placeholder: "grass color",
+      value: props.attributes.grassColor,
       onChange: updateGrassColor
     }));
   },
@@ -132,7 +134,11 @@ wp.blocks.registerBlockType("ourplugin/are-you-paying-attention", {
         grassColor
       }
     } = props;
-    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Today the sky is ", props.attributes.skyColor, " and the grass is ", props.attributes.grassColor, ".");
+    return (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Today the sky is ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "skyColor"
+    }, props.attributes.skyColor), " and the grass is ", (0,_wordpress_element__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", {
+      className: "grassColor"
+    }, props.attributes.grassColor), ".");
   }
 });
 }();
