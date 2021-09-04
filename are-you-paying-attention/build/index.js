@@ -121,20 +121,22 @@ __webpack_require__.r(__webpack_exports__);
 (function () {
   let locked = false;
   wp.data.subscribe(function () {
+    //console.log("Bug hunting");
     const results = wp.data.select("core/block-editor").getBlocks().filter(function (block) {
+      //console.log(block.name == "ourplugin/are-you-paying-attention" && block.attributes.correctAnswer == undefined);
       return block.name == "ourplugin/are-you-paying-attention" && block.attributes.correctAnswer == undefined;
-    });
-  }); //console.log(results)
+    }); //console.log(results)
 
-  if (results.length && locked == false) {
-    locked = true;
-    wp.data.dispatch("core/editor").lockPostSaving("noanswer");
-  }
+    if (results.length && locked == false) {
+      locked = true;
+      wp.data.dispatch("core/editor").lockPostSaving("noanswer");
+    }
 
-  if (!results.length && locked) {
-    locked = false;
-    wp.data.dispatch("core/editor").unlockPostSaving("noanswer");
-  }
+    if (!results.length && locked) {
+      locked = false;
+      wp.data.dispatch("core/editor").unlockPostSaving("noanswer");
+    }
+  });
 })();
 
 wp.blocks.registerBlockType("ourplugin/are-you-paying-attention", {
