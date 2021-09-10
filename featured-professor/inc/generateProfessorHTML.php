@@ -18,9 +18,9 @@ function generateProfessorHTML($id) {
 
                 <?php
                 $relatedPrograms = get_field('related_programs');
-                var_dump($relatedPrograms);
+                //var_dump($relatedPrograms);
                 if ($relatedPrograms) { ?>
-                    <p>Name teaches:
+                    <p><?php the_title(); ?> teaches:
                         <?php foreach($relatedPrograms as $key => $program) {
                             echo get_the_title($program);
                             if ($key != array_key_last($relatedPrograms) && count($relatedPrograms) > 1) {
